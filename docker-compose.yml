@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+
+  db:
+    image: 'postgres:13'
+    environment:
+      POSTGRES_PASSWORD: password
+    volumes:
+      - './logs.sql:/docker-entrypoint-initdb.d/logs.sql'
